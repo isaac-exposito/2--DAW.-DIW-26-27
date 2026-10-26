@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>width: auto vs. 100%</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    h1 {
+      margin: 0;
+      text-align: center;
+    }
+
+    #container {
+      max-width: 1024px;
+      margin: 0 auto;
+    }
+
+    #container-ejemplo {
+      width: 400px;
+      padding: 0;
+      background: #ddd;
+      border: 1px solid black;
+      margin-bottom: 20px;
+    }
+
+    #container-ejemplo>* {
+      margin: 10px 50px;
+      padding: 10px 50px;
+      border-color: #999;
+      border-style: solid;
+      border-width: 0 10px;
+    }
+
+    #container-ejemplo > *:nth-child(1) {
+      width: auto;
+      background: #fee;
+    }
+
+    #container-ejemplo > *:nth-child(2) {
+      width: 100%;
+      background: #efe;
+    }
+
+    code {
+      color: #d63384;
+      font-size: 0.9em;
+      font-weight: bold;
+      word-wrap: break-word;
+      background-color: transparent;
+      font-family: "Roboto Mono", monospace;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="container">
+    <h1>Diferencias entre <code>width: auto</code> y <code>width: 100%</code></h1>
+
+    <p>En este ejemplo, el contenedor tiene una anchura de 400px. El primer hijo tiene <code>width: auto</code>. Al ser un elemento de bloque, el navegador calcula automáticamente el ancho necesario para que quepa en el contenedor: resta a esos 400px los márgenes horizontales (2*50px), el padding horizontal (2*50px) y los bordes horizontales (2*10px). En total, 220px. Por tanto, la caja completa del elemento ocupa 300px (180px de contenido + 100px de padding + 20px de bordes), y sus márgenes ocupan los 100px restantes.</p>
+
+    <p>El segundo hijo tiene <code>width: 100%</code>. Ese valor hace que su caja completa mida 400px, porque hemos establecido <code>box-sizing: border-box</code>. El padding (2*50px) y los bordes (2*10px) quedan incluidos dentro de esos 400px, por lo que el área de contenido mide 280px (400-100-20). Sin embargo, los márgenes no se incluyen en <code>width</code>: se suman aparte. Como también tiene 100px de márgenes horizontales, el elemento necesita 500px en total y desborda el contenedor.</p>
+
+    <p>Puedes comprobar con las DevTools que la anchura de los dos hijos es como hemos explicado.</p>
+
+    <div id="container-ejemplo">
+      <div>
+        <p>Mi anchura es <code>auto</code>.</p>
+        <p>Mi caja ocupa 300px (con <i>content-box</i>) y mis márgenes ocupan los 100px restantes.</p>
+      </div>
+
+      <div>
+        <p>Mi anchura es <code>100%</code>.</p>
+        <p>Mi caja mide el 100% del contenedor, es decir, 400px.</p>
+        <p>Mis márgenes se suman aparte, así que necesito 500px en total y desbordo el contenedor.</p>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+
+</html>

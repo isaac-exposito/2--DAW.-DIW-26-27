@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diferencia entre % y vw</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .contenedor {
+      display: flow-root;
+      margin-bottom: 20px;
+    }
+
+    .contenedor div {
+      float: left;
+    }
+
+    .contenedor :nth-child(1) {
+      border-left: 1px solid black;
+      background-color: red;
+    }
+
+    .contenedor :nth-child(2) {
+      background-color: green;
+    }
+
+    .contenedor :nth-child(3) {
+      background-color: blue;
+    }
+
+    .con-porcentaje div {
+      width: calc(100% / 3);
+      /* width: 10%; */
+      height: 100px;
+    }
+
+    .con-vw div {
+      width: calc(100vw / 3);
+      /* width: 10vw; */
+      height: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Diferencia entre <code>%</code> y <code>vw</code></h1>
+  <h2>Con <code>%</code></h2>
+  <div class="contenedor con-porcentaje">
+    <div>Div1</div>
+    <div>Div2</div>
+    <div>Div3</div>
+  </div>
+
+  <h2>Con <code>vw</code></h2>
+  <div class="contenedor con-vw">
+    <div>Div1</div>
+    <div>Div2</div>
+    <div>Div3</div>
+  </div>
+
+  <div class="explicacion">
+    <p>Con porcentajes no se produce desbordamiento, pero con vw sí. El motivo está en cómo se calculan las dimensiones en cada caso.</p>
+    <ul>
+      <li>Con <strong>porcentajes</strong> se calcula en función del ancho del elemento contenedor, el cual <strong>excluye el espacio ocupado por la barra de desplazamiento vertical</strong> del navegador. Los tres divs suman exactamente el 100% de ese espacio disponible.</li>
+      <li>Con <strong><code>vw</code> (viewport width):</strong> se calcula en función del ancho total del viewport, <strong>incluyendo la barra de desplazamiento</strong>. Al dividirlo entre tres, los elementos superan el ancho real disponible en el contenedor, obligando al <code>Div3</code> a bajar de línea, produciendo desbordamiento.</li>
+    </ul>
+
+    <p>Puedes observar la diferencia en el cálculo poniendo a todos los div 10% y 10vw, verás como el cálculo es ligeramente diferente en cada caso.</p>
+  </div>
+
+</body>
+
+</html>
