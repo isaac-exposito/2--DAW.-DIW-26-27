@@ -1,0 +1,31 @@
+/* Definimos las custom properties en :root */
+:root {
+  --header-bg-color: #1a5276;
+  --footer-bg-color: #1a252f;
+}
+
+/* Aplicamos la fuente "Cinzel" de Google Fonts a h1 y h2 */
+h1,
+h2 {
+  font-family: "Cinzel", serif;
+}
+
+/* Efecto hover en los links de navegación: fondo blanco con opacidad reducida */
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Usamos un color HSL para el fondo de hero */
+.hero {
+  background-color: hsl(200, 25%, 40%);
+}
+
+/* Custom properties en header y footer */
+header {
+  background-color: var(--header-bg-color);
+}
+
+footer {
+  background-color: var(--footer-bg-color);
+}
+
